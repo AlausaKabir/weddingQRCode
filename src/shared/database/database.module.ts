@@ -1,22 +1,25 @@
 import { Module } from '@nestjs/common';
 import { ConfigModule, ConfigService } from '@nestjs/config';
 import { MongooseModule } from '@nestjs/mongoose';
+import databaseConfig from '../../config/database-config'
 
 @Module({
   imports: [
-    ConfigModule,
+    ConfigModule.forRoot({
+      load: [databaseConfig],
+      isGlobal: true,
+    }),
     MongooseModule.forRootAsync({
+      imports: [ConfigModule],
       useFactory: async (configService: ConfigService) => {
-        const dbHost = configService.get<string>('database.host');
-        const dbPort = configService.get<number>('database.port');
-        const dbName = configService.get<string>('database.name');
-        
+        const uri = configService.get<string>('database.uri');
+        console.log('Database Connected');
         return {
-          uri: `mongodb://${dbHost}:${dbPort}/${dbName}`,
+          uri,
         };
       },
       inject: [ConfigService],
     }),
   ],
 })
-export class DatabaseModule {}
+export class DatabaseModule { }

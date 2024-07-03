@@ -1,25 +1,30 @@
 import { Prop, Schema, SchemaFactory } from '@nestjs/mongoose';
-import mongoose, { Document } from 'mongoose';
+import { Document, Types } from 'mongoose';
 import { QrBadge } from 'src/modules/qr/schemas/qr.schema';
 
 export type CustomerDocument = Customer & Document;
 
 @Schema()
 export class Customer {
+  @Prop()
+  firstName: string;
 
-  @Prop({ unique: true })
-  username: string;
+  @Prop()
+  lastName: string;
 
   @Prop({ unique: true, lowercase: true })
   email: string;
 
   @Prop()
-  password: string;
+  phoneNumber: string;
+
+  @Prop({ default: false })
+  present: boolean;
 
   @Prop({
-    type: [{ type: [{type: mongoose.Schema.Types.ObjectId, ref: 'QrCode' }]}],
+    type: [{ type: Types.ObjectId, ref: 'QrBadge' }],
   })
-  qr_code_id?: QrBadge[];
+  qr_code_id?: Types.ObjectId[];
 }
 
 export const CustomerSchema = SchemaFactory.createForClass(Customer);

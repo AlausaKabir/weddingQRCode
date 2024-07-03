@@ -1,31 +1,18 @@
 import { Prop, Schema, SchemaFactory } from '@nestjs/mongoose';
-import mongoose, { Document } from 'mongoose';
-import { Customer } from '../../customer/schema/customer.schema';
-import { QrType } from './qr.type.schema';
+import { Document, Types } from 'mongoose';
 
-export interface QrBadge {
-  id: string;
-  data: string;
-  image: Buffer;
-  customer_id: Customer;
-  type: QrType;
-}
-
-export type QrCodeDocument = QrBadge & Document;
+export type QrBadgeDocument = QrBadge & Document;
 
 @Schema()
 export class QrBadge {
-  @Prop()
+  @Prop({ required: true })
   data: string;
 
-  @Prop({ type: Buffer })
-  image: Buffer;
+  @Prop({ required: true })
+  customer_id: Types.ObjectId;
 
-  @Prop({ type: mongoose.Schema.Types.ObjectId, ref: 'Customer' })
-  customer_id: Customer;
-
-  @Prop({ type: mongoose.Schema.Types.ObjectId, ref: 'QrType' })
-  type: QrType;
+  @Prop()
+  type: string;
 }
 
-export const QrCodeSchema = SchemaFactory.createForClass(QrBadge);
+export const QrBadgeSchema = SchemaFactory.createForClass(QrBadge);

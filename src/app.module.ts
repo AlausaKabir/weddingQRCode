@@ -12,9 +12,9 @@ import { DatabaseModule } from './shared/database/database.module';
     ConfigModule.forRoot({ isGlobal: true, load: [databaseConfig] }),
     DatabaseModule,
     CustomerModule,
-    QrModule,
+    QrModule
   ],
   controllers: [AppController],
   providers: [AppService],
 })
-export class AppModule {}
+export class AppModule { }
