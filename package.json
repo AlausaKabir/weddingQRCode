@@ -2,7 +2,7 @@
   "name": "qr-code-badge-generator",
   "version": "0.0.1",
   "description": "QR Badge Generator is a web application that allows users to easily create and customize QR codes for various use cases such as contact cards, Wi-Fi networks, and more.",
-  "author": "Yazan Zoghbi",
+  "author": "Alausa Kabir",
   "private": true,
   "license": "MIT",
   "scripts": {
