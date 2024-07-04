@@ -94,7 +94,7 @@ export class GuestController {
       throw new BadRequestException('Invalid file format');
     }
 
-    return { message: 'guests onboarded successfully' };
+    return { message: 'Guests onboarded successfully' };
   }
   @Get('verify/:id')
   async verifyGuest(@Param('id') id: string, @Res() res: Response) {

@@ -1,5 +1,3 @@
-// src/modules/qr/qr.module.ts
-
 import { Module } from '@nestjs/common';
 import { MongooseModule } from '@nestjs/mongoose';
 import { QrBadge, QrBadgeSchema } from './schemas/qr.schema';

@@ -10,7 +10,6 @@ async function bootstrap() {
     const app = await NestFactory.create<NestExpressApplication>(AppModule);
 
     app.setBaseViewsDir(join(__dirname, '..', 'views'));
-    console.log('Views directory:', join(__dirname, '..', 'views'));
     app.setViewEngine('hbs');
 
     await app.listen(Port);
